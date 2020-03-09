@@ -1,9 +1,3 @@
-FROM golang:1.8.0-alpine
-
-ADD . /go/src/app
-
-WORKDIR /go/src/app
-
-RUN GOOS=linux GOARCH=386 go build -v -o /go/src/app/jenkins-app
-
-CMD ["./jenkins-app"]
+FROM harbor.izehui.local/dev/nginx:1.17.8
+COPY oa-ui /usr/share/nginx/html
+COPY nginx.conf  /etc/nginx/nginx.conf
